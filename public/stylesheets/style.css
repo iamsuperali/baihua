@@ -1,0 +1,206 @@
+body{margin:0;padding:0;font-size:12px;line-height:22px;font-family:"宋体","Arial Narrow",HELVETICA;background:#fff;}
+form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;line-height:16px;}img{border:0;}ul,li{list-style-type:none;}
+
+#page-wrapper{
+    width: 1000px;
+    margin: 0px auto;
+}
+
+#main-content{
+    min-height: 550px;
+}
+
+
+#clock{
+    clear: both;
+    height:20px;
+    text-align: right;
+    font-size:40px;
+    color:#333;
+}
+
+.keyword,#clock,#tips-wrapper{
+    width:800px;
+    margin:0px auto;
+}
+
+#logo{
+    margin:20px 0px 20px 0px;
+    height:103px;
+    background:url(/images/logo.png) no-repeat left bottom;
+}
+
+
+.keyword{
+    display:block;
+    background:url(/images/keyword_bg.png) no-repeat left bottom;
+    border:none;
+    height:121px;
+    padding:0px 0px 10px 20px;
+    font-size:35px;
+}
+.keyword:focus,#keyword{
+    outline: none;  
+}
+
+#index-tips{
+    float: left;
+    width: 200px;
+    height:71px;
+    background:url(/images/tips_bg.jpg) no-repeat left bottom;
+    padding:70px 50px 30px 50px;
+    font-size:20px;
+    display: none;
+}
+
+#footer{
+   margin:0 auto;
+   width: 800px;
+}
+
+#footer div,#footer img{
+    float: left;
+}
+
+#footer span{
+    margin-right: 10px;
+}
+
+
+/*学生资料页   */
+#profile{
+    width:980px;
+    margin:0px auto;
+
+}
+
+#photo{
+    float:left;
+    width:360px;
+    height:510px;
+    background:url(/images/profile.png) no-repeat left bottom;
+}
+#img-wrapper{
+    border:3px solid #fff;
+    width:275px;
+    height:300px;
+    overflow: hidden;
+    margin:60px auto 0 auto;
+    text-align:center;
+}
+
+#stu-info{
+    margin:38px 0px 0px 70px;
+    float:left;
+    width:300px;
+}
+
+#stu-info li{
+    font-size:24px;
+    margin-bottom:15px;
+    color:blue;
+    line-height:25px;
+    float: left;
+}
+
+#stu-name{
+    width: 148px;
+}
+
+#stu-id{
+    width: 220px;
+}
+
+#stu-sex{
+    width: 50px;
+}
+
+#in-or-out{
+    width:580px;
+    height:600px;
+    float:left;
+    margin:0 0 0 30px;
+}
+
+#back-school,#out-school{
+    background: url(/images/back_school_bg.jpg) no-repeat;
+    width: 229px;
+    height:200px;
+    padding: 70px 20px 0px 20px;
+    float: left;
+    margin:8px 0px 0 10px;
+    font-size:30px;
+}
+
+#out-school{
+    background: url(/images/out_school_bg.jpg) no-repeat;
+}
+
+#back-school li,#out-school li{
+    margin-top: 15px;
+}
+
+#in-or-out input{
+    margin:5px;
+}
+
+#in-or-out fieldset{
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border:1px solid #ccc;
+    padding:10px 0 10px 10px;
+    font-size:18px;
+    margin:0px 0 20px 20px;
+    width:505px;
+}
+
+#in-or-out fieldset legend{
+    font-weight: bold;
+    font-family: "微软雅黑";
+}
+
+#in-or-out fieldset .remark{
+    font-size: 12px;
+}
+
+
+.access-key{
+    font-size:12px;
+}
+
+#warning_not_found{
+    clear:both;
+    float:left;
+}
+
+
+#panel{
+    float: left;
+    padding:0px 0px 0px 20px;
+    margin-top: 25px;
+
+}
+
+#success{
+    background: url(/images/tick.png) no-repeat left;
+    height: 40px;
+    width:172px;
+}
+
+.hidden-input{
+    width: 1px;
+    height:1px;
+    border:1px solid #fff;
+    line-height: 1px;
+}
+
+#v11_wrapper,#v11{
+    float: left;
+    margin-right: 10px;
+}
+
+#v11_wrapper{
+    display: none;
+}
+#v11{margin-top: 5px;}
+

@@ -1,0 +1,19 @@
+<fieldset>
+  <legend><h2>上传学生资料文件</h2></legend>
+  请在每学年分班后，上传新的学生资料。必须严格按照模板文件数据的格式进行编辑。
+  <a href="/template.xls" id="dl-excle-link" class="icon-link">下载模板</a>
+
+  <%= form_tag('/students/upload_excel',{ :method => :post, :multipart => true}) -%>
+  <%=file_field(:post,:attached,:accept => 'application/vnd.ms-excel')%>
+  <div><%= submit_tag '上传' %></div>
+</form>
+</fieldset>
+
+<fieldset>
+  <legend><h2>更新学生图片</h2></legend>
+  请输入学生图片所在文件夹路径(服务器),如: "c:\photos"。
+  <%= form_tag('/students/update_photo',{ :method => :post, :multipart => true}) -%>
+  <input name="photo_path" type="text"></input>
+  <div><%= submit_tag '更新' %></div>
+</form>
+</fieldset>

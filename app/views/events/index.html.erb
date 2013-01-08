@@ -1,0 +1,66 @@
+<fieldset>
+  <legend><h2>检索违纪记录</h2></legend>
+  <%=form_tag('/events', :method =>"get")%>
+  开始日期:<input type="text" id="start" name="event[start]" />
+  结束日期:<input type="text" id="end" name="event[end]" />
+  年级:<%=  select("event","grade",grade_list,{ :include_blank => true }) %>
+  班级:<%=  select("event","class_num",1..12,{ :include_blank => true }) %>
+  违纪现象:<%=  select("event","rule_type",rule_type_list,{ :include_blank => true }) %>
+  <div><%= submit_tag '确定' %></div>
+</form>
+</fieldset>
+
+<% if @page_count > 0 %>
+  <%=form_tag "/events/bulk_delete"%>
+  <table cellpadding="0" cellspacing="0" class="admin">
+
+
+
+    <caption><h2>违纪记录</h2></caption>
+    <tr>
+      <th>学号</th>
+      <th>学生</th>
+      <th>班别</th>
+      <th>事件类型</th>
+      <th>备注</th>
+      <th>记录事件</th>
+      <% if current_user.role == 1  %>
+        <th></th>
+        <th>选中</th>
+      <%end%>
+    </tr>
+
+    <% @events.each do |event| %>
+      <tr>
+        <th scope="row"class="spec"><%= event.student.num %></th>
+        <td><%= event.student.name %></td>
+        <td><%= event.student.class_info %></td>
+        <td><%= format_rule_type(event.rule_type) %></td>
+        <td><%= event.remark %></td>
+        <td><%= event.created_at.strftime("%y-%m-%d %I:%M%p") %></td>
+        <%  if current_user.role == 1  -%>
+          <td><%= link_to '删除', event, confirm: '您确定删除此记录?', method: :delete %></td>
+          <td><%=check_box("events[chosen]",event.id,{:checked=>false}) %></td>
+        <%  end %>
+      </tr>
+    <% end %>
+
+    <%  if current_user.role == 1  -%>
+      <tr>
+        <td class="first_column" colspan="8">
+          <%= submit_tag '批量删除',{:class=>"btn_r"} -%>
+        </th>
+      </tr>
+    <%end%>
+
+  </table>
+  </form>
+
+  <div id="link-container">
+    <a href="<%=request.url.gsub("/events","/events.csv")-%> " id="excle-link" class="icon-link">导出数据</a>
+  </div>
+  <%= will_paginate @posts,:previous_label=>"上一页",:next_label=>"下一页",:class=>"apple_pagination" %>
+<% else %>
+
+  抱歉，查询结果为0，请重新选择查询条件。
+<% end %>

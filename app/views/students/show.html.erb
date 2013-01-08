@@ -1,0 +1,91 @@
+<table cellpadding="0" cellspacing="0" class="admin">
+  <caption><h2>学生资料</h2></caption>
+  <tr>
+    <th>学号</th>
+    <th>姓名</th>
+    <th>性别</th>
+    <th>相片</th>
+    <th>入学时间</th>
+    <th>班级</th>
+    <th colspan="2" >操作</th>
+  </tr>
+
+  <tr>
+    <th scope="row"class="spec"><%= @student.num %></th>
+    <td><%= @student.name %></td>
+    <td><%= format_sex(@student.sex) %></td>
+    <td><%= image_tag @student.avatar.url(:thumb) %></td>
+    <td><%= @student.enter_tag %></td>
+    <td><%= @student.class_info %></td>
+    <td><%= link_to '修改', edit_student_path(@student) %></td>
+    <td><%= link_to '返回', students_path %></td>
+  </tr>
+</table>
+<br />
+<table cellpadding="0" cellspacing="0" class="admin">
+  <caption><h2>违纪现象</h2></caption>
+  <tr>
+    <th>时间段</th>
+    <th>违纪现象</th>
+  </tr>
+  <% @times.each do |t| %>
+    <tr>
+      <th scope="row"class="spec"><%=t[0]%></th>
+      <td>
+        <ul class="event-list">
+          <li>
+            上学迟到：<span><%= @student.events.where(:rule_type=>1,:created_at => t[1]).count %></span>次
+          </li>
+          <li>
+            事假：<span><%= @student.events.where(:rule_type=>[2,4],:created_at => t[1]).count %></span>次
+          </li>
+          <li>
+            病假：<span><%= @student.events.where(:rule_type=>[3,5],:created_at => t[1]).count %></span>次
+          </li>
+          <li>
+            没穿校服：<span><%= @student.events.where(:rule_type=>6,:created_at => t[1]).count %></span>次
+          </li>
+          <li>
+            头发不符合规定：<span><%= @student.events.where(:rule_type=>7,:created_at => t[1]).count %></span>次
+          </li>
+          <li>
+            指甲不符合规定：<span><%= @student.events.where(:rule_type=>8,:created_at => t[1]).count %></span>次
+          </li>
+          <li>
+            外带食物、饮料：<span><%= @student.events.where(:rule_type=>9,:created_at => t[1]).count %></span>次
+          </li>
+
+          <li>
+            没带书包：<span><%= @student.events.where(:rule_type=>10,:created_at => t[1]).count %></span>次
+          </li>
+
+          <li>
+            吸烟：<span><%= @student.events.where(:rule_type=>11,:created_at => t[1]).count %></span>次
+          </li>
+
+          <li>
+            打架：<span><%= @student.events.where(:rule_type=>12,:created_at => t[1]).count %></span>次
+          </li>
+
+          <li>
+            骑摩托回校：<span><%= @student.events.where(:rule_type=>13,:created_at => t[1]).count %></span>次
+          </li>
+
+          <li>
+            课上违纪：<span><%= @student.events.where(:rule_type=>14,:created_at => t[1]).count %></span>次
+          </li>
+
+          <li>
+            其他一般违纪：<span><%= @student.events.where(:rule_type=>15,:created_at => t[1]).count %></span>次
+          </li>
+
+          <li>
+            严重违纪：<span><%= @student.events.where(:rule_type=>16,:created_at => t[1]).count %></span>次
+          </li>
+
+        </ul>
+      </td>
+    </tr>
+  <% end %>
+</table>
+

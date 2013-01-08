@@ -1,0 +1,97 @@
+<p id="notice"><%= notice %></p>
+<% if @student.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+    <ul>
+      <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<%= form_tag("/students/add_events/" + @student.id.to_s, :method => :post)%>
+<div id="photo">
+  <div id="img-wrapper">
+    <%= image_tag @student.avatar.url(:medium) %>
+  </div>
+  <ul id="stu-info">
+    <li id="stu-name"><%= @student.name %></li>
+    <li><%= @student.class_info %></li>
+    <li id="stu-id"><%= @student.num %></li>
+    <li id="stu-sex"><%= format_sex(@student.sex) %></li>
+
+  </ul>
+  <div id="panel">
+    <a href="/"><img src="/images/back.jpg"  alt="返回"/></a>
+    <%= image_submit_tag("confirm.jpg") %>
+  </div>
+</div>
+<div id="in-or-out">
+  <ul id="back-school">
+    <li>
+      <input type="checkbox" name="events[][rule_type]" value="1" accesskey="1"  id="v1" class="rule-items late-reason" onclick="clearOther(this)" />
+      <label for="v1">迟到(F1)</label>
+    </li>
+    <li>
+      <input type="checkbox" name="events[][rule_type]" value="2" id="v2" class="rule-items late-reason" onclick="clearOther(this)"  />
+      <label for="v2">事假(F2)</label>
+    </li>
+    <li>
+      <input type="checkbox" name="events[][rule_type]" value="3" id="v3" class="rule-items late-reason"  onclick="clearOther(this)"  />
+      <label for="v3">病假(F3)</label>
+    </li>
+    <li style="font-size:14px;">
+      迟到：本月<span style="color:blue;"><%= @student.events.where(:rule_type=>1,:created_at => @times[0][1]).count %></span>次,
+      本学期<span style="color:blue;"><%= @student.events.where(:rule_type=>1,:created_at => @times[1][1]).count %></span>次.
+    </li> 
+  </ul>
+  <ul id="out-school">
+    <li>
+      <input type="checkbox" name="events[][rule_type]" value="4" id="v4" class="rule-items late-reason" onclick="clearOther(this)"  />
+      <label for="v4">事假(F4)</label>
+    </li>
+    <li>
+      <input type="checkbox" name="events[][rule_type]" value="5" id="v5" class="rule-items late-reason" onclick="clearOther(this)"/>
+      <label for="v5">病假(F5)</label>
+    </li>
+  </ul>
+  <fieldset>
+    <legend style="color:yellowgreen;">违纪现象</legend>
+    <input type="checkbox" name="events[][rule_type]" value="6" accesskey="q" id="v6" class="rule-items" /><label for="v6">校服(F6)</label>
+    <input type="checkbox" name="events[][rule_type]" value="7" accesskey="w" id="v7" class="rule-items" /><label for="v7">头发(F7)</label>
+    <input type="checkbox" name="events[][rule_type]" value="8" accesskey="z" id="v8" class="rule-items" /><label for="v8">指甲(F8)</label>
+    <input type="checkbox" name="events[][rule_type]" value="9" accesskey="x" id="v9" class="rule-items" /><label for="v9">外带食物、饮料(F9)</label>
+    <br />
+    <input type="checkbox" name="events[][rule_type]" value="10" accesskey="e" id="v10" class="rule-items" /><label for="v10">没带书包(F10)</label>
+  </fieldset>
+
+  <fieldset>
+    <legend style="color:orange;">其他违纪现象</legend>
+    <select name="events[][rule_type]" id="v11" onchange="checkv11(this);">
+      <option value ="0">请选择...</option>
+      <option value ="11">吸烟</option>
+      <option value ="12">打架</option>
+      <option value ="13">骑摩托车回校</option>
+      <option value ="14">上课违纪</option>
+      <option value ="15">其他一般违纪</option>
+    </select>
+    <div id="v11_wrapper">
+      <label for="v11remark" class="remark">内容记录:</label><input type="text" name="events[][remark]" id="v11remark" size="40" />
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend style="color:red;">严重违纪现象</legend>
+    <input type="checkbox" name="events[][rule_type]" value="16" id="v16" class="rule-items" /><label for="v16">严重违纪(F12)</label>
+    <label for="v16remark" class="remark"> 内容记录:</label><input type="text" name="events[][remark]" id="v16remark" size="40"  />
+
+
+  </fieldset>
+
+</div>
+
+<input name="keyword" id="keyword" type="text" onkeyup="monitorKeyword();" class="hidden-input"></input>
+</form>

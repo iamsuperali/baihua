@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=@students.first.class_info%>学生条码</title>
+    <%= stylesheet_link_tag "print",:media => "print" %>
+    <%= stylesheet_link_tag "preview",:media => "screen" %>
+  </head>
+  <body>
+    <h1><%=@students.first.class_info%>学生条码</h1>
+    <div id="hidden-when-print">
+      <button onclick="javascript:window.print();">打印</button>
+      <button onclick="javascript:window.close();">关闭</button>
+    </div>
+    <ul>
+      <% @students.each do |student| %>
+        <li>
+          <div class="stu_info">
+            <%=student.name%>
+            <span><%=student.num%></span>
+          </div>
+          <div class="barcode">
+            <%= Barby::Code39.new(student.num.to_s).to_svg({:height=>25, :width =>200}).html_safe%>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </body>
+</html>
+

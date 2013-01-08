@@ -1,0 +1,26 @@
+
+
+<table  cellpadding="0" cellspacing="0"  class="admin">
+  <caption><h2>查看所有评级</h2></caption>
+  <tr>
+    <th>评级名称</th>
+    <th>违纪次数下限</th>
+    <th>违纪次数上限</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ratings.each do |rating| %>
+  <tr>
+    <th scope="row"class="spec"><%= rating.name %></th>
+    <td><%= rating.upper_limit %></td>
+    <td><%= rating.lower_limit %></td>
+    <td><%= link_to '修改', edit_rating_path(rating) %></td>
+    <td><%= link_to '删除', rating, confirm: '您确定要删除此评级资料?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '新增评级', new_rating_path %>

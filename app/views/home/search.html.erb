@@ -1,0 +1,19 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    checkTime();
+    $(".rule-items").bind("change",function(){
+      $("#keyword").focus();
+    });
+    jQuery(document).ready(domo);
+    $("#keyword").val = "";
+    $("#keyword").focus();
+  });
+</script>
+<div id="logo"></div>
+<% if @student %>
+  <%= render :partial =>'profile' %>
+<%  else %>
+  <%= render :partial =>'not_found' %>
+<%  end if %>
+
+

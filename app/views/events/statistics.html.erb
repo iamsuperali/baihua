@@ -1,0 +1,35 @@
+<table cellpadding="0" cellspacing="0" class="admin">
+  <caption><h2>违纪统计</h2>(不含严重违纪和请假)</caption>
+  <tr>
+    <th>班别</th>
+    <th>本周统计</th>
+    <th>本月统计</th>
+    <th>学年统计</th>
+  </tr>
+  <tbody>
+    <%  @baihua_class_list.each do |cur_class| %>
+      <% 1.upto(Student.class_list(cur_class[1])) do|class_num| %>
+
+        <tr>
+          <th class="spec"><%=  cur_class[0] + class_num.to_s %>班</th>
+          <% @times.each do |t| %>
+            <td>
+              <%=link_to Event.normal.includes(:student).where(
+                :students=>{:grade=>cur_class[1],:class_num=>class_num},:created_at =>t[1]..t[2]).count,
+                :action=>"index",
+                :event=>{
+                :grade=>cur_class[1],
+                :class_num=>class_num,
+                :start=>t[1],
+                :end=>t[2]
+              }
+            %>
+            </td>
+          <%end%>
+        </tr>
+      <% end  %>
+
+    <%  end %>
+  </tbody>
+</table>
+

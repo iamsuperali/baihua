@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  num: MyString
+  name: MyString
+  sex: false
+  enter_tag: 2012-02-25
+  state: 1
+
+two:
+  num: MyString
+  name: MyString
+  sex: false
+  enter_tag: 2012-02-25
+  state: 1

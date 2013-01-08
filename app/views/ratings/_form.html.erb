@@ -1,0 +1,29 @@
+<%= form_for(@rating) do |f| %>
+  <% if @rating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rating.errors.count, "错误") %> 导致评级未能保存:</h2>
+
+      <ul>
+      <% @rating.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <label for="rating_name">评级名称</label>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <label for="rating_upper_limit">违纪次数下限</label>
+    <%= f.number_field :upper_limit %>
+  </div>
+  <div class="field">
+   <label for="rating_lower_limit">违纪次数上限</label>
+    <%= f.number_field :lower_limit %>
+  </div>
+  <div class="actions">
+    <%= f.submit "确定" %>
+  </div>
+<% end %>

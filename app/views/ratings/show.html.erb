@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @rating.name %>
+</p>
+
+<p>
+  <b>Upper limit:</b>
+  <%= @rating.upper_limit %>
+</p>
+
+<p>
+  <b>Lower limit:</b>
+  <%= @rating.lower_limit %>
+</p>
+
+
+<%= link_to 'Edit', edit_rating_path(@rating) %> |
+<%= link_to 'Back', ratings_path %>

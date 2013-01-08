@@ -1,0 +1,13 @@
+<p>
+  <b>Student:</b>
+  <%= @event.student %>
+</p>
+
+<p>
+  <b>Rule type:</b>
+  <%= @event.rule_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

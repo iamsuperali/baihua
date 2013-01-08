@@ -1,0 +1,354 @@
+body{margin:0;padding:0;font-size:12px;line-height:22px;font-family:"宋体","Arial Narrow",HELVETICA;background:#fff;}
+form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;line-height:16px;}img{border:0;}ul,li{list-style-type:none;}
+
+body{
+    width:1000px;
+    margin: 0 auto;
+}
+
+#main-content{
+    min-height: 580px;
+}
+
+/*table*/
+table.admin a {
+    color: #c75f3e;
+}
+
+table.admin {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.admin caption {
+    padding: 0 0 5px 0;
+    width: 100%;
+    font: italic 16px;
+    text-align: right;
+}
+
+.admin th {
+    font: bold 12px;
+    color: #4f6b72;
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    border-top: 1px solid #C1DAD7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 6px;
+    background: #CAE8EA url(/images/bg_header.jpg) no-repeat;
+    text-align: center;
+}
+
+.admin th.nobg {
+    border-top: 0;
+    border-left: 0;
+    border-right: 1px solid #C1DAD7;
+    background: none;
+}
+
+.admin td {
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    background: #fff;
+    padding: 6px;
+    color: #4f6b72;
+    text-align: center;
+}
+
+.admin .first_column{
+     border-left: 1px solid #C1DAD7;
+}
+
+.btn_r{
+    float: right;
+}
+
+
+.admin td.alt {
+    background: #F5FAFA;
+    color: #797268;
+}
+
+.admin th.spec {
+    border-left: 1px solid #C1DAD7;
+    border-top: 0;
+    background: #fff url(/images/bullet1.gif) no-repeat;
+    font: bold 10px;
+}
+
+.admin th.specalt {
+    border-left: 1px solid #C1DAD7;
+    border-top: 0;
+    background: #f5fafa url(/images/bullet2.gif) no-repeat;
+    font: bold 10px;
+    color: #797268;
+}
+
+.times{
+    font-size: 14px;
+}
+
+/*导航*/
+
+a {
+    color: #333;
+}
+
+#nav-warrper{
+    width: 100%;
+    margin: 1px 0 20px 0;
+    padding: 7px 6px 0;
+    line-height: 100%;
+    border-radius: 2em;
+
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+
+    background: #8b8b8b; /* for non-css3 browsers */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#a9a9a9', endColorstr='#7a7a7a'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#a9a9a9), to(#7a7a7a)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #a9a9a9,  #7a7a7a); /* for firefox 3.6+ */
+
+    border: solid 1px #6d6d6d;
+    height:35px;
+}
+
+#admin-nav {
+
+}
+#admin-nav li {
+    margin: 0 5px;
+    padding: 0 0 8px;
+    float: left;
+    position: relative;
+    list-style: none;
+}
+/* main level link */
+#admin-nav a,#user-nav a{
+    font-weight: bold;
+    color: #e7e5e5;
+    text-decoration: none;
+    padding:  8px 20px;
+    margin: 0;
+    -webkit-border-radius: 1.6em;
+    -moz-border-radius: 1.6em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+#admin-nav a{
+    display: block;
+}
+/* main level link hover */
+#admin-nav .current a, #admin-nav li:hover > a,#user-nav a:hover{
+    background: #d1d1d1; /* for non-css3 browsers */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ebebeb', endColorstr='#a1a1a1'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ebebeb), to(#a1a1a1)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #ebebeb,  #a1a1a1); /* for firefox 3.6+ */
+
+    color: #444;
+    border-top: solid 1px #f8f8f8;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+}
+/* sub levels link hover */
+#admin-nav ul li:hover a, #admin-nav li:hover li a {
+    background: none;
+    border: none;
+    color: #666;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+#admin-nav ul a:hover {
+    background: #0399d4 !important; /* for non-css3 browsers */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#04acec', endColorstr='#0186ba'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba)) !important; /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #04acec,  #0186ba) !important; /* for firefox 3.6+ */
+
+    color: #fff !important;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+}
+/* level 2 list */
+#admin-nav ul {
+    background: #ddd; /* for non-css3 browsers */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cfcfcf'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#cfcfcf)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #fff,  #cfcfcf); /* for firefox 3.6+ */
+
+    display: none;
+    margin: 0;
+    padding: 0;
+    width: 185px;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    border: solid 1px #b4b4b4;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+}
+/* dropdown */
+#admin-nav li:hover > ul {
+    display: block;
+}
+#admin-nav ul li {
+    float: none;
+    margin: 0;
+    padding: 0;
+}
+#admin-nav ul a{
+    font-weight: normal;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, .9);
+}
+/* level 3+ list */
+#admin-nav ul ul {
+    left: 181px;
+    top: -3px;
+}
+/* rounded corners for first and last child */
+#admin-nav ul li:first-child > a {
+    -webkit-border-top-left-radius: 9px;
+    -moz-border-radius-topleft: 9px;
+    -webkit-border-top-right-radius: 9px;
+    -moz-border-radius-topright: 9px;
+}
+#admin-nav ul li:last-child > a {
+    -webkit-border-bottom-left-radius: 9px;
+    -moz-border-radius-bottomleft: 9px;
+    -webkit-border-bottom-right-radius: 9px;
+    -moz-border-radius-bottomright: 9px;
+}
+/* clearfix */
+#admin-nav:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+#admin-nav {
+    display: inline-block;
+}
+html[xmlns] #admin-nav {
+    display: block;
+}
+* html #admin-nav {
+    height: 1%;
+}
+
+/*分页*/
+
+.apple_pagination {
+    background: #f1f1f1;
+    border: 1px solid #e5e5e5;
+    text-align: center;
+    padding: 1em;
+    cursor: default;
+    margin: 10px 0;
+}
+.apple_pagination a, .apple_pagination span {
+    padding: 0.2em 0.3em; }
+.apple_pagination .disabled {
+    color: #aaaaaa; }
+.apple_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background-color: #bebebe;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.5;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+.apple_pagination a {
+    text-decoration: none;
+    color: black; }
+.apple_pagination a:hover, .apple_pagination a:focus {
+    text-decoration: underline; }
+
+/*学生新增*/
+
+.field{
+    margin: 10px;
+}
+
+
+fieldset{
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border:1px solid #ccc;
+    padding:10px 0 10px 20px;
+    margin-bottom: 20px;
+}
+
+.event-list li{
+    text-align: left;
+}
+
+.event-list span,.span.times{
+    color:red;
+}
+
+#link-container{
+    float: left;
+    padding: 10px;
+}
+
+#footer{
+    width:800px;
+    margin:10px auto;
+    text-align: center;
+    color: #333;
+}
+
+#footer div,#footer img{
+    float: left;
+}
+
+#footer span{
+    margin-right: 10px;
+}
+
+.icon-link{
+    float: left;
+    padding: 0px 0px 0px 35px;
+    line-height:35px;
+    margin:10px 5px 20px 5px;
+}
+
+#excle-link,#dl-excle-link{
+    background: url(/images/excel.png) no-repeat left top;
+}
+#add-user{
+    background: url(/images/add_stu.png) no-repeat left top;
+}
+
+#barcode-link{
+    background: url(/images/barcode.png) no-repeat left top;
+}
+
+#dl-excle-link{
+    display: block;
+    float:none;
+}
+
+#user-nav{
+    float: right;
+    margin:8px 20px 0px 0px;
+    color: #fff;
+}

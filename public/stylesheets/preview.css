@@ -1,0 +1,21 @@
+body{margin:0;padding:0;font-size:20px;line-height:22px;font-family:"宋体","Arial Narrow",HELVETICA;background:#fff;}
+form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;line-height:16px;}img{border:0;}ul,li{list-style-type:none;}
+body{
+    padding:20px;
+}
+
+ul li{
+    width:200px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+#hidden-when-print{
+    margin:20px;
+}
+
+h1{
+    font-size:20px;
+}
+
+

@@ -1,0 +1,62 @@
+<div>
+  <fieldset>
+    <legend><h2>检索学生资料</h2></legend>
+    <%=form_tag('/students', :method =>"get")%>
+    姓名:<input name="student[name]" type="text"/>
+    学号:<input name="student[num]" type="text"/>
+    年级:<%=select('student','grade',grade_list,{ :include_blank => true }) -%>
+    班别:<input name="student[class]" type="text" size="5" />
+    <div><%= submit_tag '确定' %></div>
+    </form>
+  </fieldset>
+</div>
+
+<%if @students.count > 0 -%>
+  <table cellpadding="0" cellspacing="0" class="admin">
+    <caption><h2>学生列表</h2></caption>
+    <tr>
+      <th>学号</th>
+      <th>姓名</th>
+      <th>性别</th>
+      <th>相片</th>
+      <th>入学时间</th>
+      <th>班级</th>
+      <th>违纪统计</th>
+      <th>目前评级</th>
+      <th  <%="colspan='2'" if current_user.role == 1  -%>>操作</th>
+    </tr>
+
+    <% @students.each do |student| %>
+      <tr>
+        <th scope="row"class="spec"><%= student.num %></th>
+        <td><%= student.name %></td>
+        <td><%= format_sex(student.sex) %></td>
+        <td><%= image_tag student.avatar.url(:thumb) %></td>
+        <td><%= student.enter_tag %></td>
+        <td><%= student.class_info %></td>
+        <td><%= link_to "违纪现象(#{student.events.count})", student %></td>
+         <td><%= student.rating %></td>
+        <td><%= link_to '修改', edit_student_path(student) %></td>
+
+        <%  if current_user.role == 1 -%>
+          <td>
+            <%= link_to '删除', student, confirm: '您确定要删除此学生资料?', method: :delete -%>
+          </td>
+        <%  end -%>
+
+      </tr>
+    <% end %>
+  </table>
+
+  <div id="link-container">
+    <%= link_to '新增学生', new_student_path,{:class=>'icon-link',:id=>'add-user'} %>
+    <% if params[:student] %>
+      <a href="<%=request.url + (request.url.include?("?") ? "&barcode=1":"?barcode=1") %>" target = "_blank"
+         class="icon-link" id="barcode-link" >打印条码</a>
+      <a href="<%=request.url.gsub("/students","/students.csv")-%> " id="excle-link" class="icon-link">导出数据</a>
+    <%end%>
+  </div>
+  <%= will_paginate @students,:previous_label=>"上一页",:next_label=>"下一页",:class=>"apple_pagination" %>
+<% else %>
+  抱歉，查询结果为0，请重新选择查询条件。
+<% end %>
