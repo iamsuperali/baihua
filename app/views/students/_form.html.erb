@@ -1,3 +1,10 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#student_bed_id").chained("#bed_room_id");
+    $("#bed_room_id").chained("#floor_list")
+  });
+</script>
+
 <%= form_for(@student) do |f| %>
   <% if @student.errors.any? %>
     <div id="error_explanation">
@@ -11,32 +18,63 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <label for="student_num">学号</label>
-    <%= f.text_field :num %>
-  </div>
-  <div class="field">
-   <label for="student_:name">姓名</label>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <label for="student_:sex">性别</label>
-    <%= f.select(:sex,[["男","1"],["女","0"]])-%>
-  </div>
-  <div class="field">
-    <label for="student_:avater">上传照片</label>
-    <%= f.file_field :avatar %>
-  </div>
-  <div class="field">
-    <label for="student_enter_tag">入学时间</label>
-    <%= f.text_field :enter_tag %>
-  </div>
-  <div class="field">
-    <label for="student_grade">年级</label>
-    <%= f.select(:grade,grade_list) %>
-    <label for="student_class_num">班别</label>
-    <%= f.text_field :class_num,{:size=>"2"} %>
-  </div>
+  <fieldset>
+    <legend>学籍资料</legend>
+    <div class="field">
+      <label for="student_num">学号</label>
+      <%= f.text_field :num %>
+    </div>
+    <div class="field">
+      <label for="student_name">姓名</label>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <label for="student_sex">性别</label>
+      <%= f.select(:sex,[["男","1"],["女","0"]])-%>
+    </div>
+    <div class="field">
+      <label for="student_avater">上传照片</label>
+      <%= f.file_field :avatar %>
+    </div>
+    <div class="field">
+      <label for="student_enter_tag">入学时间</label>
+      <%= f.text_field :enter_tag %>
+    </div>
+    <div class="field">
+      <label for="student_grade">年级</label>
+      <%= f.select(:grade,grade_list) %>
+      <label for="student_class_num">班别</label>
+      <%= f.text_field :class_num,{:size=>"2"} %>
+    </div>
+
+    <div class="field">
+      <label for="student_mobile">学生手机</label>
+      <%= f.text_field :mobile %>
+    </div>
+
+    <div class="field">
+      <label for="student_parent_mobile">家长联系电话</label>
+      <%= f.text_field :parent_mobile %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>分配房间</legend>
+    <div class="field">
+
+      <%= f.label "楼层" %>
+      <%= select_tag "floor_id",floor_options(@current_floor),:id=>"floor_list"%>
+
+      <%= f.label "房间" %>
+      <select id="bed_room_id">
+        <%=room_list(@current_room_id)%>
+      </select>
+
+      <label for="student_bed_id">床位</label>
+      <%= f.select(:bed_id,bed_options(@student.bed_id)) %>
+
+    </div>
+  </fieldset>
 
   <div class="actions">
     <%= f.submit "确定" %>

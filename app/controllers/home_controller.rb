@@ -9,6 +9,10 @@ class HomeController < ApplicationController
   layout "home"
   def index
   end
+  
+  def dormitory
+    
+  end
 
   def search
     	
@@ -28,6 +32,27 @@ class HomeController < ApplicationController
       ["本学期",term_start..term_end]
     ]
     @student = Student.find(:first,:conditions => ["name = ? or num = ?",params[:keyword],params[:keyword]])
+  end
+  
+  def dormitory_search
+    @student = Student.find(:first,:conditions => ["name = ? or num = ?",params[:keyword],params[:keyword]])
+  end
+  
+  def change_dormitory_status
+    @student = Student.find(params[:id])
+
+    if params[:status]
+      @student.bed.status = params[:status]
+    end
+    
+    
+    respond_to do |format|
+      if @student.bed.save
+        format.html { redirect_to "/home/dormitory", notice: '<div id="success"></div>'}
+      else
+        format.html { redirect_to "/home/dormitory", notice: '操作失败!' }
+      end
+    end
   end
 
   protected

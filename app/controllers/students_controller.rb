@@ -101,13 +101,18 @@ class StudentsController < ApplicationController
   # GET /students/1/edit
   def edit
     @student = Student.find(params[:id])
+    if @student.bed
+      @current_floor = @student.bed.room.floor
+      @current_room_id = @student.bed.room_id
+      @current_bed_id = @student.bed.id
+    end 
   end
 
   # POST /students
   # POST /students.json
   def create
     @student = Student.new(params[:student])
-
+    
     respond_to do |format|
       if @student.save
         format.html { redirect_to @student, notice: '学生资料创建成功.' }
@@ -122,10 +127,21 @@ class StudentsController < ApplicationController
   # PUT /students/1
   # PUT /students/1.json
   def update
-    @student = Student.find(params[:id])
-
+    result = nil
+    #释放原来的床位
+    Student.transaction do
+      @student = Student.find(params[:id])
+      if @student.bed_id && @student.bed_id !=params[:student][:bed_id]
+        @student.bed.status = 4
+        @student.bed.save
+      end
+      result = @student.update_attributes(params[:student])
+      @student.bed.status = 1
+      @student.bed.save
+    end
+    
     respond_to do |format|
-      if @student.update_attributes(params[:student])
+      if result
         format.html { redirect_to @student, notice: '学生资料更新成功.' }
         format.json { head :ok }
       else

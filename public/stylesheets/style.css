@@ -1,13 +1,14 @@
-body{margin:0;padding:0;font-size:12px;line-height:22px;font-family:"宋体","Arial Narrow",HELVETICA;background:#fff;}
+body{margin:0;padding:0;font-size:12px;line-height:22px;font-family:"宋体","Arial Narrow",HELVETICA;background:#fff;display: block;}
 form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;line-height:16px;}img{border:0;}ul,li{list-style-type:none;}
 
 #page-wrapper{
     width: 1000px;
     margin: 0px auto;
+    padding-bottom: 10px;
 }
 
-#main-content{
-    min-height: 550px;
+#main{
+
 }
 
 
@@ -15,7 +16,7 @@ form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;l
     clear: both;
     height:20px;
     text-align: right;
-    font-size:40px;
+    font-size:30px;
     color:#333;
 }
 
@@ -28,6 +29,12 @@ form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;l
     margin:20px 0px 20px 0px;
     height:103px;
     background:url(/images/logo.png) no-repeat left bottom;
+}
+
+#dormitory-logo{
+    margin:20px 0px 20px 0px;
+    height:103px;
+    background:url(/images/dormitory_logo.png) no-repeat left bottom;
 }
 
 
@@ -53,25 +60,45 @@ form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;l
     display: none;
 }
 
-#footer{
-   margin:0 auto;
-   width: 800px;
+/*解决footer始终在底部的问题*/
+
+html, body, #page-wrapper {height: 100%;}
+body > #page-wrapper {height: auto; min-height: 100%;}
+#main{padding-bottom: 50px;}  /* 必须使用和footer相同的高度 */
+#footer {position: relative;
+         margin-top: -50px; /* footer高度的负值 */
+         height: 50px;
+         clear:both;}
+
+.clearfix:after {content: ".";
+                 display: block;
+                 height: 0;
+                 clear: both;
+                 visibility: hidden;}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+
+#footer {
+    border-top: 1px solid #ebebeb;
 }
 
-#footer div,#footer img{
-    float: left;
+#footer-content{
+    margin: 0 auto;
+    width: 900px;
 }
 
-#footer span{
-    margin-right: 10px;
-}
+
+/*footer结束*/
 
 
 /*学生资料页   */
 #profile{
     width:980px;
     margin:0px auto;
-
 }
 
 #photo{
@@ -80,6 +107,7 @@ form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;l
     height:510px;
     background:url(/images/profile.png) no-repeat left bottom;
 }
+
 #img-wrapper{
     border:3px solid #fff;
     width:275px;
@@ -178,8 +206,8 @@ form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;l
     float: left;
     padding:0px 0px 0px 20px;
     margin-top: 25px;
-
 }
+
 
 #success{
     background: url(/images/tick.png) no-repeat left;
@@ -192,6 +220,9 @@ form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;l
     height:1px;
     border:1px solid #fff;
     line-height: 1px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
 }
 
 #v11_wrapper,#v11{
@@ -204,3 +235,73 @@ form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;l
 }
 #v11{margin-top: 5px;}
 
+
+/*宿舍管理*/
+
+#dormitory-main{
+    width: 1000px;
+    height: 580px;
+}
+
+#dormitory-student-info{
+    margin:20px 0 0 20px;
+    height: 100px;
+    font-size: 14px;
+
+}
+
+#dormitory-student-info span{
+    color: blue;
+}
+
+#dormitory-photo{
+    float:left;
+    width:360px;
+    height:510px;
+    background:url(/images/dormitory_profile.png) no-repeat left bottom;
+}
+
+#dormitory-room{
+    float: left;
+    width: 350px;
+    height: 350px;
+    margin:0 0 0 100px;
+}
+
+.room-wrap{
+    width: 350px;
+    height: 350px;
+    background:url(/images/room_bg.png) no-repeat left bottom;
+}
+
+.room-title{
+    padding:20px 0 10px 30px;
+    font-size: 40px;
+    color: #fff;
+    line-height: 40px;
+}
+
+.room{
+    margin: 5px;
+}
+
+.room li{
+    width: 80px;
+    height: 80px;
+    float: left;
+    margin:2px;
+    text-align: center;
+}
+
+.room li div{
+    line-height: 12px;
+}
+
+#dormitory-action{
+    font-size: 14px;
+}
+
+#dormitory-button{
+    float: right;
+    margin:10px 0 0 0;
+}

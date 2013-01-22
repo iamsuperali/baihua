@@ -1,13 +1,15 @@
 body{margin:0;padding:0;font-size:12px;line-height:22px;font-family:"宋体","Arial Narrow",HELVETICA;background:#fff;}
 form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;line-height:16px;}img{border:0;}ul,li{list-style-type:none;}
 
-body{
-    width:1000px;
-    margin: 0 auto;
+
+#page-wrapper{
+    width: 1000px;
+    margin: 0px auto;
+    padding-bottom: 10px;
 }
 
-#main-content{
-    min-height: 580px;
+#main{
+    
 }
 
 /*table*/
@@ -59,7 +61,7 @@ table.admin {
 }
 
 .admin .first_column{
-     border-left: 1px solid #C1DAD7;
+    border-left: 1px solid #C1DAD7;
 }
 
 .btn_r{
@@ -72,19 +74,23 @@ table.admin {
     color: #797268;
 }
 
-.admin th.spec {
+.admin th.spec,.admin td.spec {
     border-left: 1px solid #C1DAD7;
     border-top: 0;
     background: #fff url(/images/bullet1.gif) no-repeat;
     font: bold 10px;
 }
 
-.admin th.specalt {
+.admin th.specalt,.admin td.specalt  {
     border-left: 1px solid #C1DAD7;
     border-top: 0;
     background: #f5fafa url(/images/bullet2.gif) no-repeat;
     font: bold 10px;
     color: #797268;
+}
+
+.admin .action-link{
+    width:50px;
 }
 
 .times{
@@ -308,21 +314,39 @@ fieldset{
     float: left;
     padding: 10px;
 }
+/*解决footer始终在底部的问题*/
 
-#footer{
-    width:800px;
-    margin:10px auto;
-    text-align: center;
-    color: #333;
+html, body, #page-wrapper {height: 100%;}
+body > #page-wrapper {height: auto; min-height: 100%;}
+#main{padding-bottom: 50px;}  /* 必须使用和footer相同的高度 */
+#footer {position: relative;
+         margin-top: -50px; /* footer高度的负值 */
+         height: 50px;
+         clear:both;}
+
+.clearfix:after {content: ".";
+                 display: block;
+                 height: 0;
+                 clear: both;
+                 visibility: hidden;}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+
+#footer {
+    border-top: 1px solid #ebebeb;
 }
 
-#footer div,#footer img{
-    float: left;
+#footer-content{
+    margin: 0 auto;
+    width: 900px;
 }
 
-#footer span{
-    margin-right: 10px;
-}
+
+/*footer结束*/
 
 .icon-link{
     float: left;

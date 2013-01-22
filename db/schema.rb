@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120829112505) do
+ActiveRecord::Schema.define(:version => 20130122090402) do
+
+  create_table "beds", :force => true do |t|
+    t.integer  "room_id",                            :null => false
+    t.string   "num",                                :null => false
+    t.integer  "status",              :default => 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "ask_for_leave_begin"
+    t.date     "ask_for_leave_end"
+  end
 
   create_table "events", :force => true do |t|
     t.integer  "student_id"
@@ -23,10 +33,22 @@ ActiveRecord::Schema.define(:version => 20120829112505) do
 
   add_index "events", ["student_id"], :name => "index_events_on_student_id"
 
+  create_table "login_logs", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ratings", :force => true do |t|
     t.string   "name"
     t.integer  "upper_limit"
     t.integer  "lower_limit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rooms", :force => true do |t|
+    t.string   "num",        :null => false
+    t.integer  "floor",      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,6 +67,9 @@ ActiveRecord::Schema.define(:version => 20120829112505) do
     t.datetime "avatar_updated_at"
     t.integer  "class_num"
     t.integer  "grade"
+    t.integer  "bed_id"
+    t.string   "mobile"
+    t.string   "parent_mobile"
   end
 
   create_table "users", :force => true do |t|

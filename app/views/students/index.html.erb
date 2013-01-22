@@ -21,6 +21,7 @@
       <th>相片</th>
       <th>入学时间</th>
       <th>班级</th>
+      <th>宿舍</th>
       <th>违纪统计</th>
       <th>目前评级</th>
       <th  <%="colspan='2'" if current_user.role == 1  -%>>操作</th>
@@ -34,8 +35,9 @@
         <td><%= image_tag student.avatar.url(:thumb) %></td>
         <td><%= student.enter_tag %></td>
         <td><%= student.class_info %></td>
+        <td><%= student.room_info %></td>
         <td><%= link_to "违纪现象(#{student.events.count})", student %></td>
-         <td><%= student.rating %></td>
+        <td><%= student.rating %></td>
         <td><%= link_to '修改', edit_student_path(student) %></td>
 
         <%  if current_user.role == 1 -%>

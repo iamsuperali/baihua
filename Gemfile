@@ -7,7 +7,7 @@ gem 'rails', '3.1.1'
 
 gem 'sqlite3'
 gem 'cocaine'
-gem 'rmagick'
+#gem 'rmagick'
 gem 'barby'
 gem 'spreadsheet'
 gem 'will_paginate'

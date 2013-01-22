@@ -1,6 +1,7 @@
 Attendance::Application.routes.draw do
+  resources :beds
+  resources :rooms
   resources :ratings
-
   devise_for :users
 
   resources :events do
@@ -22,7 +23,10 @@ Attendance::Application.routes.draw do
   end
 
   get "home/index"
+  get "home/dormitory"
   get "home/search"
+  get "home/dormitory_search"
+  post "home/change_dormitory_status"
   match '/:controller/:action/:id'
 
   # The priority is based upon order of creation:

@@ -1,0 +1,38 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#bed_room_id").chained("#floor_list");
+  });
+</script>
+
+<%= form_for(@bed) do |f| %>
+  <% if @bed.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bed.errors.count, "error") %> prohibited this bed from being saved:</h2>
+
+      <ul>
+        <% @bed.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "楼层" %>
+    <%= select_tag "floor_id",floor_options(@current_floor),:id=>"floor_list"%>
+<%=@current_floor%>
+    <%= f.label "房间" %>
+    <select id="bed_room_id" name="bed[room_id]">
+      <%=room_list(@bed.room_id)%>
+    </select>
+  </div>
+
+  <div class="field">
+    <%= f.label :num,"床号" %>
+    <%= f.text_field :num %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "确定" %>
+  </div>
+<% end %>

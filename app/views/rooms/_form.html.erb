@@ -1,0 +1,27 @@
+<%= form_for(@room) do |f| %>
+  <% if @room.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h2>
+
+      <ul>
+        <% @room.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :floor,"楼层" %><br />
+    <%= f.select(:floor,floor_list) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :num,"房号" %><br />
+    <%= f.text_field :num %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "确定" %>
+  </div>
+<% end %>

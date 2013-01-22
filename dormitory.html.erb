@@ -1,0 +1,28 @@
+<style type="text/css">
+  body{background: url(/images/school_bg.jpg) no-repeat fixed right bottom}
+</style>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#clock").jclock({withDate:true, withWeek:true,withSceond:true});
+    if ($("#index-tips").html().length > 0){
+      $("#index-tips").fadeIn("slow");
+      $("#index-tips").fadeOut(5000);
+    }
+    $("#keyword").val = "";
+    $("#keyword").focus();
+  });
+</script>
+
+<div id="main-content">
+  <div id="dormitory-logo"></div>
+  <div id="clock">
+  </div>
+    <%= form_tag('/home/dormitory_search',:method => :get,:id=>"index_form") -%>
+      <input name="keyword" id="keyword" type="text" onkeyup="monitorKeyword();" class="keyword" ></input>
+    </form>
+    测试学号：20130120
+<div id="tips-wrapper">
+  <div id="index-tips"><%= notice.html_safe if notice %></div>
+</div>
+</div>
+

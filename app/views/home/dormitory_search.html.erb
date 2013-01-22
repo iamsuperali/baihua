@@ -1,0 +1,100 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    checkTime();
+    $(".rule-items").bind("change",function(){
+      $("#keyword").focus();
+    });
+    jQuery(document).ready(domo);
+    $("#keyword").val = "";
+    $("#keyword").focus();
+  });
+</script>
+<div id="dormitory-logo"></div>
+<% if @student %>
+  <p id="notice"><%= notice %></p>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+        <% @student.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div id="dormitory-main">
+    <%= form_tag("/home/change_dormitory_status/" + @student.id.to_s, :method => :post)%>
+    <div id="dormitory-photo">
+      <div id="img-wrapper">
+        <%= image_tag @student.avatar.url(:medium) %>
+      </div>
+      <div id="dormitory-student-info">
+        <div>
+          姓名:<span><%=@student.name%></span>
+          班级:<span><%=@student.class_info%></span>
+          性别:<span><%=format_sex(@student.sex)%></span>
+        </div>
+
+        <div>
+          手机:<span><%=@student.mobile%></span>
+          家长联系电话:<span><%=@student.parent_mobile%></span>
+        </div>
+
+        <div>
+          宿舍:<span><%=@student.room_info%></span>
+          班主任:<span></span>
+        </div>
+
+        <div>
+          <%if @student.bed%>
+            状态:<span><%=format_bed_status(@student.bed.status)%></span>
+          <%end%>
+        </div>
+
+      </div>
+
+
+    </div>
+    <% if @student.bed %>
+      <div id="dormitory-room">
+        <%= render :partial => "room", :locals => { :room=>@student.bed.room } %>
+
+        <div id="dormitory-action">
+          <fieldset>
+            <legend>选择</legend>
+            <%if @student.bed.status == 1 %>
+              <input type="radio" name="status" value="2" id="back_room"><label for="back_room">回宿舍</label>
+            <%else%>
+              <input type="radio" name="status" value="1" id="leave_room"><label for="leave_room">离开宿舍</label>
+              <input type="radio" name="status" value="3" id="askforleave"><label for="askforleave">请假</label>
+              <%=number_field_tag 'day', nil, :in => 0...20%>天
+            <%end%>
+          </fieldset>
+        </div>
+
+        <div id="dormitory-button">
+          <a href="/home/dormitory"><img src="/images/back.jpg"  alt="返回"/></a>
+          <%= image_submit_tag("confirm.jpg") %>
+        </div>
+      </div>
+    <%else%>
+      该生无宿舍信息
+    <%end%>
+  </form>
+
+  <input name="keyword" id="keyword" type="text" onkeyup="dormitoryKeyword();" class="hidden-input"></input>
+  </div>
+
+<%  else %>
+  <div id="warning_not_found">
+    <input name="keyword" id="keyword" type="text" onkeyup="dormitoryKeyword();" class="hidden-input"></input>
+    <%=image_tag "warning_not_found.jpg" -%>
+  </div>
+  <div id="panel">
+    <a href="/home/dormitory"><img src="/images/back.jpg"  alt="返回"/></a>
+  </div>
+<%  end if %>
+
+

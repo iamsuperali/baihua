@@ -1,0 +1,19 @@
+<div class="room-wrap">
+  <div class="room-title"><%=room.num%></div>
+  <ul class="room">
+    <%room.beds.each do |b|%>
+      <li>
+        <img src="/images/status/<%=b.status%>.jpg" height="60"  />
+        <div>
+          <%if b.student%>
+            <%=b.student.name%>
+          <%else%>
+            未分配
+          <%end%>
+        </div>
+
+      </li>
+    <%end%>
+  </ul>
+
+</div>

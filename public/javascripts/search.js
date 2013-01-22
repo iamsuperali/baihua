@@ -103,13 +103,24 @@ function domo(){
 }
 
 function monitorKeyword(){
-    reg=/^\d{7}$|^[\u4E00-\u9FA5]{3,4}$/;
+    reg=/^\d{8}$|^[\u4E00-\u9FA5]{3,4}$/;
     var keyword = $.trim($("#keyword").val())
     if(!reg.test(keyword)){
     //        $("#index-tips").fadeIn("slow");
     //        $("#index-tips").html("请输入正确的学号或者学生姓名。");
     }else{
         window.location.href = "/home/search/?keyword=" + keyword;
+    }
+}
+
+function dormitoryKeyword(){
+    reg=/^\d{8}$|^[\u4E00-\u9FA5]{3,4}$/;
+    var keyword = $.trim($("#keyword").val())
+    if(!reg.test(keyword)){
+    //        $("#index-tips").fadeIn("slow");
+    //        $("#index-tips").html("请输入正确的学号或者学生姓名。");
+    }else{
+        window.location.href = "/home/dormitory_search/?keyword=" + keyword;
     }
 }
 

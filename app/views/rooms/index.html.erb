@@ -1,0 +1,21 @@
+<table class="admin">
+  <caption><h2>房间列表</h2></caption>
+  <tr>
+    <th>房间号</th>
+    <th>楼层</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @rooms.each do |room| %>
+    <tr>
+      <td scope="row" class="spec"><%= room.num %></td>
+      <td><%= room.floor %></td>
+      <td class="action-link"><%= link_to '修改', edit_room_path(room) %></td>
+      <td class="action-link"><%= link_to '删除', room, confirm: '您确定?', method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to '新增房间', new_room_path %>

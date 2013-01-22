@@ -16,5 +16,9 @@ module HomeHelper
   def format_sex(sex)
     (sex ==1 || sex ==0) ?  (Student::SEX_LIST.find{|s| s[1] == sex})[0] : "?"
   end
+  
+  def format_bed_status(status)
+    (status ==1 || status ==2 || status==3 || status==4) ?  (Bed::STATUS_LIST.find{|s| s[1] == status})[0] : "?"
+  end
 
 end

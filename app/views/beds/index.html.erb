@@ -1,0 +1,24 @@
+<table class="admin">
+  <caption><h2>床位列表</h2></caption>
+  <tr>
+    <th>房间</th>
+    <th>床号</th>
+    <th>状态</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @beds.each do |bed| %>
+    <tr>
+      <td class="spec"><%= bed.room.num %></td>
+      <td><%= bed.num %></td>
+      <td><%= bed.status %></td>
+      <td class="action-link"><%= link_to '修改', edit_bed_path(bed) %></td>
+      <td class="action-link"><%= link_to '删除', bed, confirm: '您确定?', method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+<%= will_paginate @beds,:previous_label=>"上一页",:next_label=>"下一页",:class=>"apple_pagination" %>
+
+<%= link_to '新增床位', new_bed_path %>

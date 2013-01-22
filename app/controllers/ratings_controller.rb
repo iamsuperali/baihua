@@ -47,7 +47,7 @@ class RatingsController < ApplicationController
 
     respond_to do |format|
       if @rating.save
-        format.html { redirect_to ratings_urlg, notice: '评级创建成功。' }
+        format.html { redirect_to ratings_url, notice: '评级创建成功。' }
         format.json { render json: @rating, status: :created, location: @rating }
       else
         format.html { render action: "new" }

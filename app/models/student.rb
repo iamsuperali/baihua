@@ -6,16 +6,26 @@ class Student < ActiveRecord::Base
     :styles => { :medium => "275x300>",
     :thumb => "50x50>" }
   has_many :events,:dependent => :destroy
+  belongs_to :bed
   #before_create :randomize_file_name
   before_update :check_avatar
-
+  after_destroy :free_room
+  after_create :lock_room
+  
   GRADE_LIST = [["高一",4],["高二",5]]
   SEX_LIST = [["男",1],["女",0]]
 
   def class_info
     "#{grade_name}(#{self.class_num})班"
   end
-
+  
+  def room_info
+    return_vale = ""
+    if self.bed
+      return_vale = "#{self.bed.room.num}室#{self.bed.num}床"
+    end
+    return return_vale
+  end
   def grade_name
     grade_name = (GRADE_LIST.find{|s| s[1] == self.grade})
     if grade_name
@@ -79,13 +89,20 @@ class Student < ActiveRecord::Base
   private
   def randomize_file_name
     if avatar_file_name
-    	extension = File.extname(avatar_file_name).downcase
-    	self.avatar.instance_write(:file_name, "#{Time.now.strftime("%Y%m%d%H%M%S")}#{rand(1000)}#{extension}")
+      extension = File.extname(avatar_file_name).downcase
+      self.avatar.instance_write(:file_name, "#{Time.now.strftime("%Y%m%d%H%M%S")}#{rand(1000)}#{extension}")
     end
   end
 
   def check_avatar
     randomize_file_name if self.avatar_file_name_changed?
   end
-
+  
+  def free_room
+    self.bed.update_attributes(:status=>4) if self.bed
+  end
+  
+  def lock_room
+    self.bed.update_attributes(:status=>1) if self.bed
+  end
 end
