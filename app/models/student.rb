@@ -1,5 +1,6 @@
 #coding: utf-8
 class Student < ActiveRecord::Base
+  scope :undergraduate,where("1=1")
   validates :name, :num, :grade,:class_num,:presence=>{:message=>"不能为空"}
   has_attached_file :avatar,
     :withy => false ,

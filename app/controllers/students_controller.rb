@@ -29,7 +29,7 @@ class StudentsController < ApplicationController
       render :template=>"/students/barcode",:layout=>false
     else
       respond_to do |format|
-        format.html {@students = @students.paginate(:page => params[:page], :per_page =>4)}
+        format.html {@students = @students.paginate(:page => params[:page], :per_page =>8)}
         format.json { render json: @students }
         format.csv do
           first_row = []
@@ -75,10 +75,7 @@ class StudentsController < ApplicationController
   # GET /students/1.json
   def show
     @student = Student.find(params[:id])
-    @times = [["本日",Time.now.midnight..(Time.now.midnight + 1.day)],
-      ["本月",("#{Time.now.year}-#{Time.now.strftime("%m")}-01")..("#{Time.now.year}-#{Time.now.strftime("%m")}-31")],
-      ["本学年",("#{Time.now.year}-01-01")..("#{Time.now.year}-12-31")]
-    ]
+    @times = times
 
 
     respond_to do |format|
@@ -255,6 +252,13 @@ class StudentsController < ApplicationController
       format.json { head :ok }
     end
 
+  end
+  
+  def update_state
+    Student.transaction do
+      Student.update_all "state = 1","grade != 0"
+      Student.update_all "state = 0","grade == 0"
+    end
   end
 
 end

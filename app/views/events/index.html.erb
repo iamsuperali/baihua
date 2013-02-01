@@ -3,9 +3,10 @@
   <%=form_tag('/events', :method =>"get")%>
   开始日期:<input type="text" id="start" name="event[start]" />
   结束日期:<input type="text" id="end" name="event[end]" />
-  年级:<%=  select("event","grade",grade_list,{ :include_blank => true }) %>
-  班级:<%=  select("event","class_num",1..12,{ :include_blank => true }) %>
-  违纪现象:<%=  select("event","rule_type",rule_type_list,{ :include_blank => true }) %>
+  年级:<%=  select("event","grade",grade_list,{ :include_blank => "全部"}) %>
+  班级:<%=  select("event","class_num",1..12,{ :include_blank => "全部"}) %>
+  违纪现象:<%=  select("event","rule_type",rule_type_list,{ :include_blank => "全部"}) %>
+  姓名:<input type="text" id="end" name="event[stu_name]" />
   <div><%= submit_tag '确定' %></div>
 </form>
 </fieldset>

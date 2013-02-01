@@ -18,6 +18,7 @@ Attendance::Application.routes.draw do
       post :update_photo
       get :upgrade
       get :degrade
+      post :update_state
     end
   end
 
