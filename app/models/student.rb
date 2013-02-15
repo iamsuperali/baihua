@@ -12,7 +12,7 @@ class Student < ActiveRecord::Base
   after_destroy :free_room
   after_create :lock_room
   
-  GRADE_LIST = [["高一",4],["高二",5]]
+  GRADE_LIST = [["七年级",1],["八年级",2],["九年级",3],["高一",4],["高二",5],["高三",6]]
   SEX_LIST = [["男",1],["女",0]]
 
   def class_info
