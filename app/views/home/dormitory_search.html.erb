@@ -64,13 +64,33 @@
         <div id="dormitory-action">
           <fieldset>
             <legend>选择</legend>
-            <%if @student.bed.status == 1 %>
+            <%if @student.bed.status == 1 || @student.bed.status == 3 %>
               <input type="radio" name="status" value="2" id="back_room"><label for="back_room">回宿舍</label>
             <%else%>
               <input type="radio" name="status" value="1" id="leave_room"><label for="leave_room">离开宿舍</label>
               <input type="radio" name="status" value="3" id="askforleave"><label for="askforleave">请假</label>
               <%=number_field_tag 'day', nil, :in => 0...20%>天
             <%end%>
+          </fieldset>
+
+          <fieldset>
+            <legend style="color:orange;">宿舍违纪现象</legend>
+            <select name="events[][rule_type]" id="v11" onchange="checkv11(this);">
+              <option value ="0">请选择...</option>
+              <option value ="17">夜不归宿</option>
+              <option value ="18">违规用电</option>
+              <option value ="19">违反宿舍安全制度</option>
+              <option value ="20">不服从宿管员管理</option>
+              <option value ="21">不按作息时间休息</option>
+              <option value ="22">内务整理不规范</option>
+              <option value ="23">寻衅滋事</option>
+              <option value ="24">窃取他人财物</option>
+              <option value ="25">不文明行为</option>
+              <option value ="15">其它</option>
+            </select>
+            <div id="v11_wrapper">
+              <label for="v11remark" class="remark">记录:</label><input type="text" name="events[][remark]" id="v11remark" size="20" />
+            </div>
           </fieldset>
         </div>
 

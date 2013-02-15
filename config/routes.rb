@@ -8,6 +8,7 @@ Attendance::Application.routes.draw do
     collection do
       get  :statistics
       get  :period
+      post :import  
       post :bulk_delete
     end
   end

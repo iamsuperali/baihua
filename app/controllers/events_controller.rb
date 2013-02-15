@@ -85,7 +85,7 @@ class EventsController < ApplicationController
       format.csv do
         csv_string = CSV.generate do |csv|
           # header row
-          csv << ["学号", "学生", "班别","事件类型", "记录时间"]
+          csv << ["学号","学生","班别","事件类型","记录时间","学生ID","事件ID"]
           # data rows
           @events.each do |event|
             student = event.student
@@ -93,7 +93,10 @@ class EventsController < ApplicationController
               student.name,
               student.class_info,
               Event.format_rule_type(event.rule_type),
-              event.created_at.strftime("%y-%m-%d %I:%M%p")]
+              event.created_at.strftime("%y-%m-%d %I:%M%p"),
+              student.id,
+              event.rule_type
+            ]
           end
         end
         # send it to the browsah
@@ -255,6 +258,30 @@ class EventsController < ApplicationController
       end
     end
     
+  end
+  
+  def import
+    counter = 0
+    unless params[:post].blank?
+      uploaded_io = params[:post][:attached]
+      
+      csv_text = File.open(uploaded_io.tempfile,"r:ISO-8859-1")
+      csv = CSV.parse(csv_text, :headers => true)
+      csv.each do |row|
+        event = Event.new
+        event.update_attributes(
+          :student_id=>row[5].strip,
+          :rule_type=>row[6].strip,
+          :created_at=>row[4])
+        counter +=1 if event.save
+      end
+  
+    end
+
+    respond_to do |format|
+      format.html { redirect_to events_url ,notice: "导入#{counter}个违纪记录"}
+      format.json { head :ok }
+    end
   end
 
 end

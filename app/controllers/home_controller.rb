@@ -45,6 +45,16 @@ class HomeController < ApplicationController
       @student.bed.status = params[:status]
     end
     
+    if params[:events]
+      for item_hash in params[:events]
+        #chech_box没有选中的时候，提交的值为"0"
+        if item_hash[:rule_type] && item_hash[:rule_type] !="0"
+          @student.events << Event.create(:rule_type=>item_hash[:rule_type],
+            :remark=>item_hash[:remark])
+        end
+      end
+    end
+    
     
     respond_to do |format|
       if @student.bed.save

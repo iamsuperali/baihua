@@ -82,7 +82,10 @@
           <li>
             严重违纪：<span><%= @student.events.where(:rule_type=>16,:created_at => t[1]).count %></span>次
           </li>
-
+          
+          <li>
+            宿舍违纪：<span><%= @student.events.where(:rule_type=>(17..26),:created_at => t[1]).count %></span>次
+          </li>
         </ul>
       </td>
     </tr>

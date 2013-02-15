@@ -310,9 +310,10 @@ fieldset{
     color:red;
 }
 
-#link-container{
+#link-container,.link-container{
     float: left;
-    padding: 10px;
+    padding: 5px;
+    clear: both;
 }
 /*解决footer始终在底部的问题*/
 

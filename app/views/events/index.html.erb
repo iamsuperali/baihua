@@ -49,7 +49,7 @@
       <tr>
         <td class="first_column" colspan="8">
           <%= submit_tag '批量删除',{:class=>"btn_r"} -%>
-        </th>
+          </th>
       </tr>
     <%end%>
 
@@ -57,10 +57,22 @@
   </form>
 
   <div id="link-container">
+    
     <a href="<%=request.url.gsub("/events","/events.csv")-%> " id="excle-link" class="icon-link">导出数据</a>
+    
   </div>
   <%= will_paginate @posts,:previous_label=>"上一页",:next_label=>"下一页",:class=>"apple_pagination" %>
 <% else %>
-
-  抱歉，查询结果为0，请重新选择查询条件。
+  <div class="link-container">
+    抱歉，查询结果为0，请重新选择查询条件。
+  </div>
 <% end %>
+  
+<fieldset class="link-container">
+  <legend>导入违纪记录</legend>
+  <%= form_tag('/events/import',{ :method => :post, :multipart => true}) -%>
+  <%=file_field(:post,:attached,:accept => '.csv,text/comma-separated-values,text/csv')%>
+  <%= submit_tag '确定' %>
+</fieldset>
+</div>  
+

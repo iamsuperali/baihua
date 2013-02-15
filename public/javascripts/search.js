@@ -132,7 +132,7 @@ function clearOther(cur){
 
 function checkv11(cur){
     var curValue = cur.value;
-    if (curValue == 15){
+    if (curValue == 15 ){
         jQuery('#v11_wrapper').show();
     }else{
         jQuery('#v11_wrapper').hide();
