@@ -36,7 +36,7 @@ class Student < ActiveRecord::Base
   end
 
   def grade_name=(value)
-    self.grade = (GRADE_LIST.find{|s| s[0] == value})[1] if value == "高一" || value == "高二" || value == "高三"
+    self.grade = (GRADE_LIST.find{|s| s[0] == value})[1] if GRADE_LIST.assoc(value)
   end
 
   def sex_text

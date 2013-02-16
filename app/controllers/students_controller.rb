@@ -29,7 +29,7 @@ class StudentsController < ApplicationController
       render :template=>"/students/barcode",:layout=>false
     else
       respond_to do |format|
-        format.html {@students = @students.paginate(:page => params[:page], :per_page =>4)}
+        format.html {@students = @students.paginate(:page => params[:page], :per_page =>20)}
         format.json { render json: @students }
         format.csv do
           first_row = []
@@ -132,12 +132,11 @@ class StudentsController < ApplicationController
     Student.transaction do
       @student = Student.find(params[:id])
       if @student.bed_id && @student.bed_id !=params[:student][:bed_id]
-        @student.bed.status = 4
-        @student.bed.save
+        original_bed_status = @student.bed.status
+        @student.bed.update_attributes(:status => 4)
+        Bed.find(params[:student][:bed_id]).update_attributes(:status=>original_bed_status)
       end
       result = @student.update_attributes(params[:student])
-      @student.bed.status = 1
-      @student.bed.save
     end
     
     respond_to do |format|
@@ -201,13 +200,15 @@ class StudentsController < ApplicationController
       sheet0 = book.worksheet 0
       
       sheet0.each  1 do |row|
-        student = Student.find_or_create_by_num(row[0])
-        student.update_attributes(:name=>row[1].strip,
-          :sex_text=>row[2].strip,
-          :enter_tag=>row[3],
-          :grade_name=>row[4].strip,
-          :class_num=>row[5])
-        counter +=1 if student.save
+        unless row[0].blank?
+          student = Student.find_or_create_by_num(row[0])
+          student.update_attributes(:name=>row[1].strip,
+            :sex_text=>row[2].strip,
+            :enter_tag=>row[3],
+            :grade_name=>row[4].strip,
+            :class_num=>row[5])
+          counter +=1 if student.save
+        end
       end
     end
 
@@ -225,7 +226,7 @@ class StudentsController < ApplicationController
           stu_name = File.basename(path,".j*g")[/[\u4e00-\u9fa5]{2,4}/]
           cur_stu = Student.find_by_name(stu_name)
           if cur_stu
-            new_path = File.dirname(path) + cur_stu.num + "jpg"
+            new_path = path + cur_stu.num + ".jpg"
             File.rename(path,new_path)
             begin
               cur_stu.avatar = File.new(new_path,"r")
