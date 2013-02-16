@@ -135,8 +135,9 @@ body > #page-wrapper {height: auto; min-height: 100%;}
     width: 148px;
 }
 
-#stu-id{
+li#stu-id{
     width: 220px;
+    font-size:13px;
 }
 
 #stu-sex{

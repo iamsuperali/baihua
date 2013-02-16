@@ -103,8 +103,15 @@ function domo(){
 }
 
 function monitorKeyword(){
-    reg=/^\d{8}$|^[\u4E00-\u9FA5]{3,4}$/;
     var keyword = $.trim($("#keyword").val())
+    regLength =/^\d[44]/;
+    if(regLength.test(keyword)){
+        reg=/^\d{20}$|^[\u4E00-\u9FA5]{3,4}$/;
+    }else{
+        reg=/^\d{13}$|^[\u4E00-\u9FA5]{3,4}$/;
+    }     
+    
+    
     if(!reg.test(keyword)){
     //        $("#index-tips").fadeIn("slow");
     //        $("#index-tips").html("请输入正确的学号或者学生姓名。");
@@ -114,8 +121,13 @@ function monitorKeyword(){
 }
 
 function dormitoryKeyword(){
-    reg=/^\d{8}$|^[\u4E00-\u9FA5]{3,4}$/;
     var keyword = $.trim($("#keyword").val())
+    regLength =/^\d[44]/;
+    if(regLength.test(keyword)){
+        reg=/^\d{20}$|^[\u4E00-\u9FA5]{3,4}$/;
+    }else{
+        reg=/^\d{13}$|^[\u4E00-\u9FA5]{3,4}$/;
+    }  
     if(!reg.test(keyword)){
     //        $("#index-tips").fadeIn("slow");
     //        $("#index-tips").html("请输入正确的学号或者学生姓名。");
