@@ -81,8 +81,13 @@ class Student < ActiveRecord::Base
     self.events.serious.count
   end
 
-  def self.class_list(grade)
-    self.where(:grade => grade).order("class_num desc").first.class_num
+  def self.clist(grade)
+    max_class = self.find(:first,:conditions=>{:grade=>grade},:order=>("class_num desc"))
+    if max_class
+      return max_class.class_num
+    else
+      return 1
+    end
   end
 
 

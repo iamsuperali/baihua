@@ -89,11 +89,11 @@ class EventsController < ApplicationController
           # data rows
           @events.each do |event|
             student = event.student
-            csv << [" " + student.num  + " ",
+            csv << ["=\"" + student.num + "\"",
               student.name,
               student.class_info,
               Event.format_rule_type(event.rule_type),
-              event.created_at.strftime("%y-%m-%d %I:%M%p"),
+              event.created_at.strftime("%Y-%m-%d %I:%M%p"),
               student.id,
               event.rule_type
             ]
@@ -205,7 +205,7 @@ class EventsController < ApplicationController
       
       @result = []
       Student::GRADE_LIST.each do |cur_grade|
-        1.upto(Student.class_list(cur_grade[1])) do|class_num|
+        1.upto(Student.clist(cur_grade[1])) do|class_num|
           @result << {
             :times=>events.includes(:student).where(
               :students=>{

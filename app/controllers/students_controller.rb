@@ -47,7 +47,7 @@ class StudentsController < ApplicationController
 
             @students.each do |s|
               data_row = []
-              data_row += [" " + s.num  + " ",
+              data_row += ["=\"" + s.num + "\"",
                 s.name,
                 s.class_info]
 
