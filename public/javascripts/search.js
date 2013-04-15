@@ -7,13 +7,13 @@ function checkTime(){
     var pmLeaveSchool = new Date(Date.parse(dateString + " 17:00:00"));
 
     if((now > amLate) && (now < amLeaveSchool)){
-        jQuery('#v1').attr('checked',true);
+        jQuery('#v1').prop('checked', true);
     }
     else if((now > pmLate) && (now < pmLeaveSchool)){
-        jQuery('#v1').attr('checked',true);
+        jQuery('#v1').prop('checked', true);
     }
     else{
-        jQuery('#v1').attr('checked',false);
+        jQuery('#v1').prop('checked', true);
     }
 }
 
