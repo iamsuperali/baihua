@@ -1,0 +1,54 @@
+.room-wrap{
+    width: 350px;
+    height: 350px;
+    background:url(/images/room_bg.png) no-repeat left bottom;
+}
+
+.room-title{
+    padding:20px 0 10px 30px;
+    font-size: 40px;
+    color: #fff;
+    line-height: 40px;
+}
+
+.room{
+    margin: 5px;
+}
+
+.room li{
+    width: 80px;
+    height: 80px;
+    float: left;
+    margin:2px;
+    text-align: center;
+}
+
+
+
+.room li div{
+    line-height: 12px;
+}
+
+
+
+#dormitory-action{
+    font-size: 14px;
+}
+
+#dormitory-button{
+    float: right;
+    margin:10px 0 0 0;
+}
+
+.room-title-thumb{
+    color: #fff;
+    font-size:25px;
+    height: 35px;
+}
+
+#status_example li{
+    float:left;
+    width:55px;
+    text-align: center;
+    margin:0 10px;
+}

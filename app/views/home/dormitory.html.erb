@@ -17,12 +17,35 @@
   <div id="dormitory-logo"></div>
   <div id="clock">
   </div>
-    <%= form_tag('/home/dormitory_search',:method => :get,:id=>"index_form") -%>
-      <input name="keyword" id="keyword" type="text" onkeyup="dormitoryKeyword();" class="keyword" ></input>
-    </form>
-    测试学号：20130120
-<div id="tips-wrapper">
-  <div id="index-tips"><%= notice.html_safe if notice %></div>
+  <%= form_tag('/home/dormitory_search',:method => :get,:id=>"index_form") -%>
+    <input name="keyword" id="keyword" type="text" onkeyup="dormitoryKeyword();" class="keyword" ></input>
+  </form>
+  
+  <div id="status_wrapper">
+    <%= render :partial => "example"%>
+  </div>
+  
+  
+<div id="index-tips"><%= notice.html_safe if notice %></div>
+<div id="rooms">
+  <%@rooms.each do |r|%>
+    <a class="room_thumb" href="<%=room_path(r)%>">
+      <div class="room-title-thumb"><%=r.num%></div>
+      <%r.beds.each do |b|%>
+        <li>
+          <img src="/images/status/<%=b.status%>.jpg" height="40"  />
+          <!--div>
+          <%if b.student%>
+            <%=b.student.name%>
+          <%else%>
+                未分配
+          <%end%>
+          </div-->
+
+        </li>
+      <%end%>
+    </a>
+  <%end%>
 </div>
 </div>
 

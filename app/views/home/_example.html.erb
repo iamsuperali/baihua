@@ -1,0 +1,11 @@
+<fieldset>
+  <legend>示例</legend>
+  <ul id="status_example">
+    <%Bed::STATUS_LIST.each do |s|%>
+      <li>
+        <img src="/images/status/<%=s[1]%>.jpg" height="40"  />
+        <%=s[0]%>
+      </li>
+    <%end%>
+  </ul>
+</fieldset>

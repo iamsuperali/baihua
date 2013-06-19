@@ -51,14 +51,51 @@ form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;l
 }
 
 #index-tips{
-    float: left;
+    position: relative;
+    /*float: left;*/
     width: 200px;
     height:71px;
     background:url(/images/tips_bg.jpg) no-repeat left bottom;
     padding:70px 50px 30px 50px;
     font-size:20px;
+    top:0px;
+    left:0px;
     display: none;
 }
+
+
+
+.room_thumb{
+    width: 176px;
+    height:176px;
+    float:left;
+    background: url(/images/room_bg_thumb.png) no-repeat;
+    margin: 5px;
+    padding:10px 0 0 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.room_thumb li{
+    width:42px;
+    height:42px;
+    float:left;
+    font-size:10px;
+}
+
+
+#status_wrapper{
+    width: 350px;
+    position: absolute;
+    top:20px;
+    right:20px;
+}
+
+#status_wrapper{
+    
+}
+
+
 
 /*解决footer始终在底部的问题*/
 
@@ -241,7 +278,7 @@ li#stu-id{
 
 #dormitory-main{
     width: 1000px;
-    height: 580px;
+    height: 680px;
 }
 
 #dormitory-student-info{
@@ -267,42 +304,4 @@ li#stu-id{
     width: 350px;
     height: 350px;
     margin:0 0 0 100px;
-}
-
-.room-wrap{
-    width: 350px;
-    height: 350px;
-    background:url(/images/room_bg.png) no-repeat left bottom;
-}
-
-.room-title{
-    padding:20px 0 10px 30px;
-    font-size: 40px;
-    color: #fff;
-    line-height: 40px;
-}
-
-.room{
-    margin: 5px;
-}
-
-.room li{
-    width: 80px;
-    height: 80px;
-    float: left;
-    margin:2px;
-    text-align: center;
-}
-
-.room li div{
-    line-height: 12px;
-}
-
-#dormitory-action{
-    font-size: 14px;
-}
-
-#dormitory-button{
-    float: right;
-    margin:10px 0 0 0;
 }

@@ -1,15 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Num:</b>
-  <%= @room.num %>
-</p>
-
-<p>
-  <b>Floor:</b>
-  <%= @room.floor %>
-</p>
-
-
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+<div style="height: 570px;">
+  <div class="room-wrap">
+    <%= render :partial => "/home/room", :locals => { :room=>@room } %>
+    <%= render :partial => "/home/example" %>
+    <div id="panel">
+      <a href="/home/dormitory"><img src="/images/back.jpg"  alt="返回"/></a>
+    </div>  
+  </div>
+</div>

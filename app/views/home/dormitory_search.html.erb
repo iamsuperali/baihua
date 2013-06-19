@@ -52,16 +52,16 @@
             状态:<span><%=format_bed_status(@student.bed.status)%></span>
           <%end%>
         </div>
-
       </div>
 
-
     </div>
+
     <% if @student.bed %>
       <div id="dormitory-room">
         <%= render :partial => "room", :locals => { :room=>@student.bed.room } %>
 
         <div id="dormitory-action">
+          <%= render :partial => "example"%>
           <fieldset>
             <legend>选择</legend>
             <%if @student.bed.status == 1 || @student.bed.status == 3 %>

@@ -11,7 +11,7 @@ class HomeController < ApplicationController
   end
   
   def dormitory
-    
+    @rooms = Room.find(:all)
   end
 
   def search
