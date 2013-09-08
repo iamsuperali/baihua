@@ -10,7 +10,7 @@ class Student < ActiveRecord::Base
   #before_create :randomize_file_name
   before_update :check_avatar
 
-  GRADE_LIST = [["高一",4],["高二",5]]
+  GRADE_LIST = [["高一",4],["高二",5],["高三",6]]
   SEX_LIST = [["男",1],["女",0]]
 
   def class_info
