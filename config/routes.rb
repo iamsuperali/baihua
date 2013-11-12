@@ -19,6 +19,7 @@ Attendance::Application.routes.draw do
       get :upgrade
       get :degrade
       post :update_state
+      post :bulk_delete
     end
   end
 

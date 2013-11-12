@@ -1,3 +1,15 @@
+<script type="text/javascript">
+  $(function () {
+    $("#checkAll").click(function () {
+      if ($("#checkAll").is(':checked')) {
+        $(".book").prop("checked", true);
+      } else {
+        $(".book").prop("checked", false);
+      }
+    });
+  });
+</script>
+
 <div>
   <fieldset>
     <legend><h2>检索学生资料</h2></legend>
@@ -12,6 +24,7 @@
 </div>
 
 <%if @students.count > 0 -%>
+  <%=form_tag "/students/bulk_delete"%>
   <table cellpadding="0" cellspacing="0" class="admin">
     <caption><h2>学生列表</h2></caption>
     <tr>
@@ -24,6 +37,9 @@
       <th>违纪统计</th>
       <th>目前评级</th>
       <th  <%="colspan='2'" if current_user.role == 1  -%>>操作</th>
+      <% if current_user.role == 1  %>
+        <th>全选<input type="checkbox" id="checkAll" /></th>
+      <%end%>
     </tr>
 
     <% @students.each do |student| %>
@@ -35,18 +51,29 @@
         <td><%= student.enter_tag %></td>
         <td><%= student.class_info %></td>
         <td><%= link_to "违纪现象(#{student.events.count})", student %></td>
-         <td><%= student.rating %></td>
+        <td><%= student.rating %></td>
         <td><%= link_to '修改', edit_student_path(student) %></td>
-
         <%  if current_user.role == 1 -%>
           <td>
             <%= link_to '删除', student, confirm: '您确定要删除此学生资料?', method: :delete -%>
           </td>
+
+          <td><%=check_box("students[chosen]",student.id,{:checked=>false,:class=>"book"}) %></td>
         <%  end -%>
 
       </tr>
     <% end %>
+
+    <%  if current_user.role == 1  -%>
+      <tr>
+        <td class="first_column" colspan="11">
+          <%= submit_tag '批量删除',{:class=>"btn_r"} -%>
+          </th>
+      </tr>
+    <%end%>
+
   </table>
+  </form>
 
   <div id="link-container">
     <%= link_to '新增学生', new_student_path,{:class=>'icon-link',:id=>'add-user'} %>

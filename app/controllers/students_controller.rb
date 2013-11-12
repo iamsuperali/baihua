@@ -160,9 +160,12 @@ class StudentsController < ApplicationController
   def destroy
     @student = Student.find(params[:id])
     @student.destroy
-
+    
     respond_to do |format|
-      format.html { redirect_to students_url }
+      format.html { 
+        redirect_to :back and return unless request.referrer == students_path(@student)
+        redirect_to students_url
+      }
       format.json { head :ok }
     end
   end
@@ -203,10 +206,10 @@ class StudentsController < ApplicationController
     unless params[:photo_path].blank?
       Find.find(params[:photo_path]) do |path|
         if File.fnmatch("*.j*g",path)
-          stu_name = File.basename(path,".j*g")[/[\u4e00-\u9fa5]{2,4}/]
-          cur_stu = Student.find_by_name(stu_name)
+          stu_num = File.basename(path,".j*g")[/[0-9]+/]
+          cur_stu = Student.find_by_num(stu_num)
           if cur_stu
-            new_path = File.dirname(path) + cur_stu.num + "jpg"
+            new_path = File.dirname(path) + "/" + cur_stu.num + ".jpg"
             File.rename(path,new_path)
             begin
               cur_stu.avatar = File.new(new_path,"r")
@@ -259,6 +262,28 @@ class StudentsController < ApplicationController
       Student.update_all "state = 1","grade != 0"
       Student.update_all "state = 0","grade == 0"
     end
+  end
+  
+  def bulk_delete
+    if params[:students]
+      chosen = []
+      params[:students][:chosen].each do |e|
+        if e[1] == "1"
+          chosen << e[0]
+        end
+      end
+
+      Student.delete(chosen)
+
+      respond_to do |format|
+        format.html {
+          redirect_to :back and return unless request.referrer == students_path(@student)
+          redirect_to students_url
+        }
+        format.json { head :ok }
+      end
+    end
+    
   end
 
 end

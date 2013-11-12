@@ -1,3 +1,15 @@
+<script type="text/javascript">
+  $(function () {
+    $("#checkAll").click(function () {
+      if ($("#checkAll").is(':checked')) {
+        $(".book").prop("checked", true);
+      } else {
+        $(".book").prop("checked", false);
+      }
+    });
+  });
+</script>
+
 <fieldset>
   <legend><h2>检索违纪记录</h2></legend>
   <%=form_tag('/events', :method =>"get")%>
@@ -27,7 +39,7 @@
       <th>记录事件</th>
       <% if current_user.role == 1  %>
         <th></th>
-        <th>选中</th>
+        <th>全选<input type="checkbox" id="checkAll" /></th>
       <%end%>
     </tr>
 
@@ -41,7 +53,7 @@
         <td><%= event.created_at.strftime("%y-%m-%d %I:%M%p") %></td>
         <%  if current_user.role == 1  -%>
           <td><%= link_to '删除', event, confirm: '您确定删除此记录?', method: :delete %></td>
-          <td><%=check_box("events[chosen]",event.id,{:checked=>false}) %></td>
+          <td><%=check_box("students[chosen]",event.id,{:checked=>false,:class=>"books"}) %></td>
         <%  end %>
       </tr>
     <% end %>
@@ -50,7 +62,7 @@
       <tr>
         <td class="first_column" colspan="8">
           <%= submit_tag '批量删除',{:class=>"btn_r"} -%>
-        </th>
+          </th>
       </tr>
     <%end%>
 
