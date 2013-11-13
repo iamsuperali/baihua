@@ -15,8 +15,8 @@ class StudentsController < ApplicationController
   def index
     if params[:student]
       query_hash = {}
-      query_hash.merge!(:num => params[:student][:num]) if !params[:student][:num].blank?
-      query_hash.merge!(:name => params[:student][:name]) if !params[:student][:name].blank?
+      query_hash.merge!(:num => params[:student][:num].strip) if !params[:student][:num].blank?
+      query_hash.merge!(:name => params[:student][:name].strip) if !params[:student][:name].blank?
       query_hash.merge!(:class_num => params[:student][:class]) if !params[:student][:class].blank?
       query_hash.merge!(:grade => params[:student][:grade]) if !params[:student][:grade].blank?
     else
