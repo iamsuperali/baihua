@@ -201,11 +201,11 @@ class StudentsController < ApplicationController
       
       sheet0.each  1 do |row|
         unless row[0].blank?
-          student = Student.find_or_create_by_num(row[0])
-          student.update_attributes(:name=>row[1].strip,
-            :sex_text=>row[2].strip,
+          student = Student.find_or_create_by_name(row[1])
+          student.update_attributes(:num=>row[0].strip,
+            :sex_text=>(row[2] ? row[2].strip : ""),
             :enter_tag=>row[3],
-            :grade_name=>row[4].strip,
+            :grade_name=>(row[4] ? row[4].strip : ""),
             :class_num=>row[5])
           counter +=1 if student.save
         end
