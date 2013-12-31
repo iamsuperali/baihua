@@ -28,7 +28,7 @@ class EventsController < ApplicationController
       stu_queries.merge!({:grade=>params[:event][:grade]}) if !params[:event][:grade].blank?
       stu_queries.merge!({:class_num=>params[:event][:class_num]}) if !params[:event][:class_num].blank?
       stu_queries.merge!({:name=>params[:event][:stu_name].strip}) if !params[:event][:stu_name].blank?
-#      stu_queries.merge!({:grade=>1..6})
+      #      stu_queries.merge!({:grade=>1..6})
       cur_page = params[:page]
       rule_cate = params[:event][:rule_cate] if !params[:event][:rule_cate].blank?
       
@@ -174,8 +174,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html {
-        session[:from_destory]="yes"
-        redirect_to :action=>"index"
+        redirect_to :back and return unless request.referrer == events_path(@event)
+        redirect_to events_url
       }
       format.json { head :ok }
     end
@@ -250,8 +250,8 @@ class EventsController < ApplicationController
 
       respond_to do |format|
         format.html {
-          session[:from_destory]="yes"
-          redirect_to :action=>"index"
+          redirect_to :back and return unless request.referrer == events_path(@event)
+          redirect_to events_url
         }
         format.json { head :ok }
       end

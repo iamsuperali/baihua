@@ -45,15 +45,15 @@
 
     <% @events.each do |event| %>
       <tr>
-        <th scope="row"class="spec"><%= event.student.num %></th>
-        <td><%= event.student.name %></td>
-        <td><%= event.student.class_info %></td>
+        <th scope="row"class="spec"><%= event.student.num if event.student %></th>
+        <td><%= event.student.name if event.student %></td>
+        <td><%= event.student.class_info if event.student %></td>
         <td><%= format_rule_type(event.rule_type) %></td>
         <td><%= event.remark %></td>
         <td><%= event.created_at.strftime("%y-%m-%d %I:%M%p") %></td>
         <%  if current_user.role == 1  -%>
           <td><%= link_to '删除', event, confirm: '您确定删除此记录?', method: :delete %></td>
-          <td><%=check_box("students[chosen]",event.id,{:checked=>false,:class=>"books"}) %></td>
+          <td><%=check_box("events[chosen]",event.id,{:checked=>false,:class=>"books"}) %></td>
         <%  end %>
       </tr>
     <% end %>
