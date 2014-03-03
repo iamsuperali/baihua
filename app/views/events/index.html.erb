@@ -43,7 +43,7 @@
       <%end%>
     </tr>
 
-    <% @events.each do |event| %>
+    <% @events_paginate.each do |event| %>
       <tr>
         <th scope="row"class="spec"><%= event.student.num if event.student %></th>
         <td><%= event.student.name if event.student %></td>
@@ -72,7 +72,7 @@
   <div id="link-container">
     <a href="<%=request.url.gsub("/events","/events.csv")-%> " id="excle-link" class="icon-link">导出数据</a>
   </div>
-  <%= will_paginate @posts,:previous_label=>"上一页",:next_label=>"下一页",:class=>"apple_pagination" %>
+  <%= will_paginate @events_paginate,:previous_label=>"上一页",:next_label=>"下一页",:class=>"apple_pagination" %>
 <% else %>
 
   抱歉，查询结果为0，请重新选择查询条件。

@@ -66,7 +66,7 @@ class EventsController < ApplicationController
 
     if @page_count > 0
 
-      @events = @events.includes(:student).where(
+      @events_paginate = @events.includes(:student).where(
         :students=>stu_queries,
         :events=>event_queries
       ).paginate(
@@ -89,13 +89,21 @@ class EventsController < ApplicationController
           # header row
           csv << ["学号", "学生", "班别","事件类型", "记录时间"]
           # data rows
-          @events.each do |event|
+          
+          @events_excel = @events.includes(:student).where(
+            :students=>stu_queries,
+            :events=>event_queries
+          )
+          
+          @events_excel.each do |event|
             student = event.student
-            csv << [" " + student.num  + " ",
-              student.name,
-              student.class_info,
-              Event.format_rule_type(event.rule_type),
-              event.created_at.strftime("%y-%m-%d %I:%M%p")]
+            if student
+              csv << [" " + student.num  + " ",
+                student.name,
+                student.class_info,
+                Event.format_rule_type(event.rule_type),
+                event.created_at.strftime("%y-%m-%d %I:%M%p")]
+            end
           end
         end
         # send it to the browsah
