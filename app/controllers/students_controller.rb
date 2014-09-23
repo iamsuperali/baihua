@@ -228,9 +228,7 @@ class StudentsController < ApplicationController
   def upgrade
 
     Student.transaction do
-      Student.update_all "grade = 0","grade = 3"
-      Student.update_all "grade = 3","grade = 2"
-      Student.update_all "grade = 2","grade = 1"
+      Student.update_all "grade = grade + 1"
     end
 
     respond_to do |format|
@@ -243,11 +241,7 @@ class StudentsController < ApplicationController
   def degrade
 
     Student.transaction do
-      Student.update_all "grade = 4","grade = 0"
-      Student.update_all "grade = 0","grade = 1"
-      Student.update_all "grade = 1","grade = 2"
-      Student.update_all "grade = 2","grade = 3"
-      Student.update_all "grade = 3","grade = 4"
+      Student.update_all "grade = grade - 1"
     end
 
     respond_to do |format|

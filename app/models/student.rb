@@ -57,11 +57,16 @@ class Student < ActiveRecord::Base
 
     if self.count_serious_discipline > 0
       1.upto(self.count_serious_discipline)do |t|
-        cur_rating = cur_rating.degrade
+        cur_rating = cur_rating.degrade if cur_rating != ""
       end
     end
+    
+    if cur_rating != ""
+      return cur_rating.name
+    else
+      return ""
+    end
 
-    return cur_rating.name
   end
 
   def count_normal_discipline
